@@ -47,10 +47,10 @@ def preprocess(
     """
     if sw==None:
         sw = stopwords.words(lang)
-    # make texts lowercase
-    texts = [str(phrase).lower() for phrase in texts]
     if tokenizer==None:
         tokenizer = RegexpTokenizer(r"([@#]?[a-zA-Z]+(?:’[a-z]+)?)")
+    # make texts lowercase
+    texts = [str(phrase).lower() for phrase in texts]
     tokens = [tokenizer.tokenize(str(doc)) for doc in texts]
     
     clean_texts = []
