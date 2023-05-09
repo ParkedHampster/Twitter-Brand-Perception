@@ -63,5 +63,9 @@ def preprocess(
     for text in clean_texts:
         tagged = pos_tag(text)
         wordnet_tag = [(word[0], get_wordnet_pos(word[1])) for word in tagged]
-        full_cleaned.append(' '.join([lemmer.lemmatize(word[0],word[1]) for word in wordnet_tag]))
+        full_cleaned.append(
+            ' '.join([
+                lemmer.lemmatize(word[0],word[1]) for word in wordnet_tag
+                ]
+            ))
     return full_cleaned
