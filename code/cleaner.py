@@ -21,7 +21,8 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN
 
 def preprocess(
-    texts,sw=None,tokenizer=None,lang='english'
+    texts,sw=None,tokenizer=None,lang='english',
+    ret_tokens=False
     ):
     """_summary_
 
@@ -39,11 +40,19 @@ def preprocess(
         lang (str, optional):
             Language to use when getting default stop
             words from nltk. Defaults to 'english'.
+        ret_tokens (bool, optional):
+            Whether or not to return tokens as well as
+            the full strings.
 
     Returns:
         list:
             Returns a pre-processed list of texts as
             provided and prepared for vectorizing.
+        tuple:
+            If ret_tokens is true, returns a tuple of
+            lists, the first being the full strings
+            processed as specified and the second being
+            the tokens used in the associated lists.
     """
     if sw==None:
         sw = stopwords.words(lang)
@@ -60,12 +69,14 @@ def preprocess(
         clean_texts.append(nsw)
     lemmer = WordNetLemmatizer()
     full_cleaned = []
+    full_tokens  = []
     for text in clean_texts:
         tagged = pos_tag(text)
         wordnet_tag = [(word[0], get_wordnet_pos(word[1])) for word in tagged]
+        token_list_ = [lemmer.lemmatize(word[0],word[1]) for word in wordnet_tag]
         full_cleaned.append(
-            ' '.join([
-                lemmer.lemmatize(word[0],word[1]) for word in wordnet_tag
-                ]
-            ))
+            ' '.join(token_list_))
+        full_tokens.append(token_list_)
+    if ret_tokens==True:
+        return (full_cleaned, full_tokens)
     return full_cleaned
