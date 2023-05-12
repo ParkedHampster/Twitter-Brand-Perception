@@ -36,8 +36,7 @@ to utilize a model that can draw conclusions from
 existing data to allow product managers to quickly and
 efficiently place their focus where it counts.
 
-
-## Business Case:
+## Business Case
 
 ------
 
@@ -65,8 +64,7 @@ By categorizing these sentiments, it becomes much more
 possible to narrow down to any number of tweets for
 review.
 
-
-## Data Overview:
+## Data Overview
 
 ------
 
@@ -82,7 +80,6 @@ These tweets are centered around attendees of the
 South by Southwest (SXSW) electronics expo and are
 categorized as either negative, positive, or neutral in
 regards to the emotions being expressed.
-
 
 ## Examining Our Features & Targets
 
@@ -290,7 +287,7 @@ To improve our model, we want to investigate a few more
 items, including:
 
 1. Analyzing brand information in our dataset to see if
-adding context enhances model performance. 
+adding context enhances model performance.
 2. We will also explore other modeling systems to
 achieve better results
 3. Consider non-English tweets
